@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Activate Location</title>
+  <style>
+    /* General styles */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #1e1e2f, #3a3a5c);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Card container */
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+      padding: 30px;
+      text-align: center;
+      width: 90%;
+      max-width: 450px;
+    }
+
+    /* Header text */
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+      color: #00ffcc;
+    }
+
+    /* Image styles */
+    .image {
+      margin: 20px 0;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 200px;
+      height: auto;
+    }
+
+    /* Description text */
+    p {
+      margin: 20px 0;
+      font-size: 1rem;
+      color: #d0d0d0;
+    }
+
+    /* Button styles */
+    .button-container {
+      margin-top: 20px;
+    }
+
+    .button {
+      background: linear-gradient(135deg, #00ffcc, #007acc);
+      border: none;
+      padding: 15px 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+    }
+
+  </style>
+  <script>
+    function activateLocation() {
+      alert("Lokasi Berhasil Diaktifkan!");
+      window.location.href = "driver_dashboard.html"; // Redirect ke halaman dashboard
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Aktifkan Lokasi</h1>
+    
+    <!-- Image -->
+    <img src="https://static.vecteezy.com/system/resources/previews/016/017/119/non_2x/current-location-logo-world-map-location-logo-sign-map-graphic-free-png.png" alt="Location Illustration" class="image">
+
+    <p>Tekan tombol di bawah untuk mengaktifkan lokasi kamu secara real-time!</p>
+
+    <!-- Button -->
+    <div class="button-container">
+      <button class="button" onclick="activateLocation()">Aktifkan Lokasi</button>
+    </div>
+  </div>
+</body>
+</html>

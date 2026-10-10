@@ -1,0 +1,93 @@
+<?php
+session_start();
+if (!isset($_SESSION['customer_username'])) {
+    header('Location: ../php/customer_login.php');
+    exit;
+}
+$username = $_SESSION['customer_username'];
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7dfb5;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .menu-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .menu-item {
+            width: 150px;
+            margin: 10px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+        }
+        .menu-item img {
+            width: 80px;
+            height: 80px;
+        }
+        .username {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #3a2e2e;
+        }
+    </style>
+</head>
+<body>
+    <h1>Choose Your Menu</h1>
+    <p class="username">Logged in as: <b><?= htmlspecialchars($username); ?></b></p>
+    <div class="menu-container" id="menu-container">
+        <!-- Menu items will be dynamically loaded here -->
+    </div>
+
+    <script>
+        fetch('../php/get_menu.php')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('menu-container');
+                container.innerHTML = '';
+
+                data.forEach(menu => {
+                    const menuItem = document.createElement('div');
+                    menuItem.className = 'menu-item';
+                    const imageSrc = menu.image_url ? `../images/${menu.image_url}` : '../images/default.png';
+                    menuItem.innerHTML = `
+                        <img src="${imageSrc}" alt="${menu.name}">
+                        <p>${menu.name}</p>
+                        <p>${menu.price}K</p>
+                        <button class="order-button" data-menu-id="${menu.id}" data-menu-name="${menu.name}" data-menu-price="${menu.price}">Order Now</button>
+                    `;
+                    container.appendChild(menuItem);
+                });
+
+                document.querySelectorAll('.order-button').forEach(button => {
+                    button.addEventListener('click', event => {
+                        const menuId = event.target.getAttribute('data-menu-id');
+                        const menuName = event.target.getAttribute('data-menu-name');
+                        const menuPrice = event.target.getAttribute('data-menu-price');
+
+                        const selectedMenu = { id: menuId, name: menuName, price: menuPrice };
+                        localStorage.setItem('selectedMenu', JSON.stringify(selectedMenu));
+                        window.location.href = 'order_success.php';
+                    });
+                });
+            })
+            .catch(error => console.error('Error fetching menu:', error));
+    </script>
+</body>
+</html>

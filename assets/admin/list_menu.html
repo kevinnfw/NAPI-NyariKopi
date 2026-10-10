@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Menu List</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f3eb;
+            text-align: center;
+            color: #5d4037;
+        }
+        h1 {
+            margin: 20px 0;
+            font-size: 2.5em;
+        }
+        .menu-item {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px auto;
+            padding: 10px 15px;
+            max-width: 300px;
+            font-size: 1.2em;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .menu-item img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+        .menu-item button {
+            background-color: #8e5c42;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .menu-item button:hover {
+            background-color: #5d4037;
+        }
+        .action-buttons {
+            margin: 20px;
+        }
+        .action-buttons button {
+            background-color: #5d4037;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .action-buttons button:hover {
+            background-color: #8e5c42;
+        }
+        #menuModal {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+        #menuModal .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 300px;
+            width: 100%;
+            text-align: left;
+        }
+        #menuModal input,
+        #menuModal button {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #menuModal button {
+            background-color: #5d4037;
+            color: #fff;
+            border: none;
+        }
+        #menuModal button:hover {
+            background-color: #8e5c42;
+        }
+    </style>
+</head>
+<body>
+    <h1>Coffee Menu List</h1>
+
+    <!-- Menu List -->
+    <div id="menuList"></div>
+
+    <!-- Add Button -->
+    <div class="action-buttons">
+        <button id="addMenuButton">Add New Menu</button>
+    </div>
+
+    <!-- Modal Form -->
+    <div id="menuModal">
+        <div class="modal-content">
+            <h2 id="modalTitle">Add New Menu</h2>
+            <form id="menuForm" enctype="multipart/form-data">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" required>
+                <label for="image">Image:</label>
+                <input type="file" id="image" name="image" accept="image/*">
+                <input type="hidden" id="menuId" name="menuId">
+                <button type="submit">Save</button>
+                <button type="button" id="cancelButton">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            // Fetch and display menu list
+            function fetchMenus() {
+                $.get('../php/menu_crud.php', { action: 'fetch' }, function (data) {
+                    const menus = JSON.parse(data);
+                    const menuList = $('#menuList');
+                    menuList.empty();
+
+                    menus.forEach(menu => {
+                        const imageTag = menu.image_url 
+                            ? `<img src="../images/${menu.image_url}" alt="${menu.name}">` 
+                            : '';
+
+                        const menuItem = `
+                            <div class="menu-item">
+                                <span>${imageTag} ${menu.name} ${menu.price}K</span>
+                                <div>
+                                    <button class="editBtn" 
+                                        data-id="${menu.id}" 
+                                        data-name="${menu.name}" 
+                                        data-price="${menu.price}" 
+                                        data-image="${menu.image_url}">
+                                        Edit
+                                    </button>
+                                    <button class="deleteBtn" data-id="${menu.id}">Delete</button>
+                                </div>
+                            </div>
+                        `;
+                        menuList.append(menuItem);
+                    });
+                });
+            }
+
+            fetchMenus();
+
+            // Open Modal for Add
+            $('#addMenuButton').click(function () {
+                $('#menuId').val('');
+                $('#name').val('');
+                $('#price').val('');
+                $('#image').val('');
+                $('#modalTitle').text('Add New Menu');
+                $('#menuModal').fadeIn();
+            });
+
+            // Open Modal for Edit
+            $(document).on('click', '.editBtn', function () {
+                const id = $(this).data('id');
+                const name = $(this).data('name');
+                const price = $(this).data('price');
+                const image = $(this).data('image');
+
+                $('#menuId').val(id);
+                $('#name').val(name);
+                $('#price').val(price);
+                $('#image').val('');
+                $('#modalTitle').text('Edit Menu');
+                $('#menuModal').fadeIn();
+            });
+
+            // Close Modal
+            $('#cancelButton').click(function () {
+                $('#menuModal').fadeOut();
+            });
+
+            // Save or Update Menu
+            $('#menuForm').submit(function (e) {
+                e.preventDefault();
+
+                const formData = new FormData(this);
+                const menuId = $('#menuId').val();
+
+                formData.append('action', menuId ? 'update' : 'add');
+
+                $.ajax({
+                    url: '../php/menu_crud.php',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        const res = JSON.parse(response);
+                        if (res.status === 'success') {
+                            alert(res.message);
+                            fetchMenus();
+                            $('#menuModal').fadeOut();
+                        } else {
+                            alert(res.message);
+                        }
+                    },
+                    error: function () {
+                        alert('An error occurred while saving the menu.');
+                    }
+                });
+            });
+
+            // Delete Menu
+            $(document).on('click', '.deleteBtn', function () {
+                if (!confirm('Are you sure you want to delete this menu?')) return;
+
+                const menuId = $(this).data('id');
+
+                $.post('../php/menu_crud.php', { action: 'delete', id: menuId }, function (response) {
+                    const res = JSON.parse(response);
+                    if (res.status === 'success') {
+                        alert(res.message);
+                        fetchMenus();
+                    } else {
+                        alert(res.message);
+                    }
+                }).fail(function () {
+                    alert('An error occurred while deleting the menu.');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

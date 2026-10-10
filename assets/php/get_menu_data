@@ -1,0 +1,22 @@
+<?php
+header('Content-Type: application/json');
+
+// Koneksi ke database
+$conn = new mysqli("localhost", "root", "", "coffee_app");
+if ($conn->connect_error) {
+    die(json_encode(['error' => 'Database connection failed']));
+}
+
+// Query untuk mendapatkan data menu
+$result = $conn->query("SELECT * FROM menu ORDER BY created_at DESC");
+$data = [];
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $data[] = $row;
+    }
+}
+
+echo json_encode($data);
+$conn->close();
+?>

@@ -1,0 +1,42 @@
+<h2>Manage Coffee Menu</h2>
+<div>
+    <button onclick="showAddMenu()">Add Menu</button>
+</div>
+<div id="menuTable">
+    <!-- Menu Table will be dynamically loaded -->
+</div>
+
+<script>
+    function showAddMenu() {
+        document.getElementById('menuTable').innerHTML = `
+            <form action="../php/manage_menu.php" method="POST">
+                <input type="hidden" name="action" value="add">
+                <label for="name">Name:</label>
+                <input type="text" name="name" required>
+                <label for="price">Price:</label>
+                <input type="number" name="price" required>
+                <button type="submit">Add Menu</button>
+            </form>
+        `;
+    }
+
+    function editMenu(id, name, price) {
+        document.getElementById('menuTable').innerHTML = `
+            <form action="../php/manage_menu.php" method="POST">
+                <input type="hidden" name="action" value="edit">
+                <input type="hidden" name="id" value="${id}">
+                <label for="name">Name:</label>
+                <input type="text" name="name" value="${name}" required>
+                <label for="price">Price:</label>
+                <input type="number" name="price" value="${price}" required>
+                <button type="submit">Update Menu</button>
+            </form>
+        `;
+    }
+
+    function deleteMenu(id) {
+        if (confirm('Are you sure you want to delete this menu?')) {
+            window.location.href = `../php/manage_menu.php?action=delete&id=${id}`;
+        }
+    }
+</script>

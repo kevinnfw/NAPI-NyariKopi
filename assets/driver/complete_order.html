@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Order</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <style>
+        /* Gaya Umum */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f5f2;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* Container */
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+}
+
+/* Judul */
+h1 {
+    font-size: 2rem;
+    color: #5d4037;
+    margin-bottom: 15px;
+}
+
+/* Paragraf */
+p {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Tombol Kembali */
+a {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #5d4037;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+a:hover {
+    background-color: #8e5c42;
+}
+
+/* Responsif untuk Layar Kecil */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+
+    a {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Order Completed</h1>
+        <p>Order #102 has been successfully completed.</p>
+        <a href="orders.html">Back to Orders</a>
+    </div>
+</body>
+</html>

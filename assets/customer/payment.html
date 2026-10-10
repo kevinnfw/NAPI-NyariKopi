@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7dfb5;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: auto;
+            max-width: 400px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #3a2e2e;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        button:hover {
+            background-color: #d79805;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Payment Page</h1>
+        <p>Click the button below to complete payment for all pending orders.</p>
+        <button onclick="completePayment()">Complete Payment</button>
+    </div>
+
+    <script>
+        function completePayment() {
+            fetch('../php/update_payment.php', {
+                method: 'POST',
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    alert('All pending orders have been marked as Paid!');
+                    window.location.href = 'order.html';
+                } else {
+                    alert(`Failed to update orders: ${data.message}`);
+                }
+            })
+            .catch(error => {
+                console.error('Error updating orders:', error);
+                alert('An error occurred while updating orders. Please try again.');
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Notifications</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+        }
+        .notification {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+        .notification h3 {
+            margin: 0;
+            font-size: 16px;
+        }
+        .notification p {
+            margin: 5px 0;
+        }
+        .notification span {
+            font-size: 12px;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <h1>Driver Notifications</h1>
+    <div id="notifications">
+        <p>Loading messages...</p>
+    </div>
+
+    <script>
+        function fetchNotifications() {
+            $.get('../php/notifikasi_driver.php')
+                .done(function (data) {
+                    try {
+                        const notifications = typeof data === "string" ? JSON.parse(data) : data;
+                        const notificationContainer = $('#notifications');
+                        notificationContainer.empty();
+    
+                        if (notifications.length > 0) {
+                            notifications.forEach(notification => {
+                                const notificationElement = `
+                                    <div class='notification'>
+                                        <p><strong>Sender ID:</strong> ${notification.sender_id || 'Unknown'}</p>
+                                        <p><strong>Message:</strong> ${notification.message || 'No message'}</p>
+                                        <p><strong>Created At:</strong> ${notification.created_at || 'Unknown'}</p>
+                                    </div>
+                                `;
+                                notificationContainer.append(notificationElement);
+                            });
+                        } else {
+                            notificationContainer.append('<p>No new messages.</p>');
+                        }
+                    } catch (error) {
+                        console.error("Error parsing notifications:", error);
+                        $('#notifications').html('<p>Error loading notifications.</p>');
+                    }
+                })
+                .fail(function (xhr, status, error) {
+                    console.error("Error loading notifications:", status, error);
+                    $('#notifications').html('<p>Error loading notifications.</p>');
+                });
+        }
+    
+        $(document).ready(fetchNotifications);
+    </script>    
+</body>
+</html>

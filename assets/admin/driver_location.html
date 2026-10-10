@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Driver Location</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #4CAF50;
+    }
+
+    .map {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .map img {
+      max-width: 100%;
+      border-radius: 8px;
+      border: 2px solid #ddd;
+    }
+
+    .info {
+      margin-top: 20px;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .button {
+      text-decoration: none;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: bold;
+      margin: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #45a049;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Driver Locations</h1>
+
+    <!-- Gerobak Kopi A -->
+    <div class="map">
+      <h3>Gerobak Kopi A</h3>
+      <img src="../images/coffee_A.jpg" alt="Gerobak Kopi A Map">
+      <div class="button-container">
+        <a href="https://www.google.com/maps?q=-6.175110,106.865039" target="_blank" class="button">View Gerobak Kopi A</a>
+      </div>
+    </div>
+
+    <!-- Gerobak Kopi B -->
+    <div class="map">
+      <h3>Gerobak Kopi B</h3>
+      <img src="../images/coffee_B.jpg" alt="Gerobak Kopi B Map">
+      <div class="button-container">
+        <a href="https://www.google.com/maps?q=-6.200000,106.800000" target="_blank" class="button">View Gerobak Kopi B</a>
+      </div>
+    </div>
+
+    <!-- Gerobak Kopi C -->
+    <div class="map">
+      <h3>Gerobak Kopi C</h3>
+      <img src="../images/coffee_C.jpg" alt="Gerobak Kopi C Map">
+      <div class="button-container">
+        <a href="https://www.google.com/maps?q=-6.300000,106.900000" target="_blank" class="button">View Gerobak Kopi C</a>
+      </div>
+    </div>
+
+    <!-- Redirect to Driver Notification -->
+    <div class="button-container">
+      <a href="notifikasi_driver.html" class="button">Cek Notifikasi Driver Kamu Sekarang!</a>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2024 NAPI (Nyari Kopi). All rights reserved.
+  </footer>
+</body>
+</html>

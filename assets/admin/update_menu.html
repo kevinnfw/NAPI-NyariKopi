@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Menu</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <style>
+        /* Gaya Umum */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f5f2;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Judul Halaman */
+h1 {
+    font-size: 2.5rem;
+    color: #5d4037;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Formulir */
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Label */
+label {
+    font-size: 1rem;
+    color: #5d4037;
+    margin-bottom: 5px;
+}
+
+/* Input Fields */
+input[type="text"], input[type="number"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    color: #333;
+}
+
+input:focus {
+    border-color: #5d4037;
+    outline: none;
+}
+
+/* Tombol */
+button {
+    padding: 10px 15px;
+    background-color: #5d4037;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #8e5c42;
+}
+
+/* Responsif untuk Layar Kecil */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    form {
+        padding: 15px;
+    }
+
+    button {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <h1>Update Coffee Menu</h1>
+    <form action="list_menu.html">
+        <label for="name">Coffee Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="price">New Price:</label>
+        <input type="number" id="price" name="price" required>
+        <button type="submit">Update Menu</button>
+    </form>
+</body>
+</html>

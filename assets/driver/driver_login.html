@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Login</title>
+    <style>
+        /* Style tetap sama seperti sebelumnya */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            width: 90%;
+            max-width: 400px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .container img {
+            width: 150px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .container h1 {
+            font-size: 28px;
+            color: #4a4a4a;
+            margin-bottom: 20px;
+        }
+
+        .container form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .container form input {
+            padding: 10px 15px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .container form input:focus {
+            border-color: #007bff;
+        }
+
+        .container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .container button:hover {
+            background-color: #0056b3;
+        }
+
+        .back {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #007bff;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="../logo kopi.jpg" alt="Coffee Cup">
+        <h1>Halaman Driver</h1>
+        <form id="loginForm" action="../php/validate_driver_login.php" method="POST">
+            <input type="text" id="username" name="username" placeholder="Masukkan ID Driver" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <button type="submit">LOGIN</button>
+        </form>
+        <a href="../index.html" class="back">&larr; Back to Home</a>
+    </div>
+</body>
+</html>

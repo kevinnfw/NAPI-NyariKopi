@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #4E3629; /* Background coklat elegan */
+            color: #F8F3E7; /* Warna teks krem */
+        }
+
+        .header {
+            background-color: #8B5A2B; /* Warna coklat tua */
+            color: #F8F3E7;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            background-color: #3E2723; /* Warna coklat gelap */
+            padding: 20px;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            color: #F8F3E7;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+
+        .sidebar ul li a {
+            color: #F8F3E7;
+            text-decoration: none;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #795548; /* Warna coklat lembut */
+            transform: translateX(5px);
+        }
+
+        .sidebar ul li a i {
+            margin-right: 10px;
+        }
+
+        /* Content Styles */
+        .content {
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .content h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #F8F3E7;
+        }
+
+        .content p {
+            font-size: 18px;
+            color: #E5D5C5;
+        }
+
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background-color: #6D4C41; /* Warna coklat lembut */
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .card i {
+            font-size: 50px;
+            color: #F8F3E7;
+            margin-bottom: 10px;
+        }
+
+        .card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #F8F3E7;
+        }
+
+        .card p {
+            font-size: 16px;
+            color: #E5D5C5;
+        }
+
+        /* Footer Styles */
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #3E2723; /* Warna coklat gelap */
+            color: #F8F3E7;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        Admin Dashboard - NAPI (Nyari Kopi)
+    </div>
+    <div class="dashboard-container">
+        <div class="sidebar">
+            <h2>Menu</h2>
+            <ul>
+                <li><a href="notifikasi_driver.html"><i class="fas fa-bell"></i> Notifikasi Driver</a></li>
+                <li><a href="list_menu.html"><i class="fas fa-list"></i> List Menu</a></li>
+                <li><a href="list_menu.html"><i class="fas fa-edit"></i> Kelola Menu</a></li>
+                <li><a href="admin_login.html" onclick="logout('admin')"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            <h1>Selamat Datang, Admin!</h1>
+            <p>Kelola aplikasi NAPI (Nyari Kopi) dengan mudah!.</p>
+            <div class="dashboard-cards">
+                <a class="card" href="orders.html">
+                    <i class="fas fa-users"></i>
+                    <h3>100+ Customers</h3>
+                    <p>Lihat Riwayat Pesanan Customer</p>
+                </a>
+                <a class="card" href="list_menu.html">
+                    <i class="fas fa-coffee"></i>
+                    <h3>50+ Menu</h3>
+                    <p>Kelola menu kopi</p>
+                </a>
+                <a class="card" href="driver_location.html">
+                    <i class="fas fa-map"></i>
+                    <h3>Lokasi Driver</h3>
+                    <p>Cek Lokasi Driver</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        &copy; 2024 NAPI (Nyari Kopi). All Rights Reserved.
+    </div>
+    <script>
+            function logout(role) {
+            alert(`${role.charAt(0).toUpperCase() + role.slice(1)} has been logged out!`);
+            window.location.href = `../${role}_login.html`;
+        }
+    </script>
+</body>
+</html>

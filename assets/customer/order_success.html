@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Success</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0d3a2;
+            color: #3a2e2e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .container {
+            background-color: #fff6e1;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 1.1rem;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .menu-details {
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+
+        .button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: rgb(41, 169, 219);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .button:hover {
+            background-color: #d79805;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Order Success!</h1>
+        <label for="customer-name">Enter Your Name:</label>
+        <input type="text" id="customer-name" placeholder="Your Name">
+        <div class="menu-details">
+            <p id="menu-name">...</p>
+            <p id="menu-price">...</p>
+        </div>
+        <p>Your coffee order has been placed successfully.</p>
+        <button class="button" onclick="proceedToPayment()">Proceed to Payment</button>
+        <button class="button" onclick="window.location.href='../index.html'">Back to Home</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const selectedMenu = JSON.parse(localStorage.getItem('selectedMenu'));
+            if (selectedMenu) {
+                document.getElementById('menu-name').textContent = `Menu: ${selectedMenu.name}`;
+                document.getElementById('menu-price').textContent = `Price: ${selectedMenu.price}K`;
+            }
+        });
+
+        function proceedToPayment() {
+    const customerName = document.getElementById('customer-name').value.trim();
+    const selectedMenu = JSON.parse(localStorage.getItem('selectedMenu'));
+
+    if (!customerName) {
+        alert('Please enter your name.');
+        return;
+    }
+
+    if (!selectedMenu) {
+        alert('No menu selected. Please go back and select a menu.');
+        return;
+    }
+
+    // Data yang akan dikirim
+    const orderData = {
+        customer_name: customerName,
+        name: selectedMenu.name,
+        price: selectedMenu.price,
+    };
+
+    fetch('../php/save_order.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(orderData),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.success) {
+            alert('Order saved successfully!');
+            window.location.href = 'payment.html';
+        } else {
+            alert(`Error: ${data.message}`);
+        }
+    })
+    .catch(error => {
+        console.error('Fetch error:', error);
+        alert('An error occurred. Please try again.');
+    });
+}
+    </script>
+</body>
+</html>

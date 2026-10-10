@@ -1,0 +1,82 @@
+=== New Request ===
+=== New Request ===
+=== New Request ===
+=== New Request ===
+=== New Request ===
+=== New Request ===
+=== New Request ===
+=== New Request ===
+=== New Request ===
+=== New Request ===
+=== New Request ===
+Database connection loaded
+Invalid request method
+=== New Request ===
+Database connection loaded
+Invalid request method
+=== New Request ===
+Database connection loaded
+Invalid request method
+=== New Request ===
+Database connection loaded
+Invalid request method
+=== New Request ===
+Database connection loaded
+Received Data: sender_id=1, message=123
+Message inserted successfully
+=== New Request ===
+Database connection loaded
+Received Data: sender_id=1, message=halooo
+Message inserted successfully
+=== New Request ===
+Database connection loaded
+Received Data: sender_id=1, message=halooo
+Message inserted successfully
+=== New Request ===
+Database connection loaded
+Received Data: sender_id=1, message=halooo
+Message inserted successfully
+=== New Request ===
+Database connection loaded
+Received Data: sender_id=1, message=halooo
+Message inserted successfully
+=== New Request ===
+Database connection loaded
+Received Data: sender_id=2, message=restok espresso
+Message inserted successfully
+=== New Request ===
+Database connection loaded
+Received Data: sender_id=1, message=susu habis
+Message inserted successfully
+=== New Request ===
+Database connection loaded
+Received Data: sender_id=1, message=test
+Message inserted successfully
+=== New Request ===
+Database connection loaded
+Received Data: sender_id=2, message=p
+Message inserted successfully
+=== New Request ===
+Database connection loaded
+Received Data: sender_id=1, message=es batu habis
+Message inserted successfully
+=== New Request ===
+Database connection loaded
+Received Data: sender_id=1, message=es batu
+Message inserted successfully
+=== New Request ===
+Database connection loaded
+Received Data: sender_id=1, message=cup
+Message inserted successfully
+=== New Request ===
+Database connection loaded
+Received Data: sender_id=2, message=kopi habis
+Message inserted successfully
+=== New Request ===
+Database connection loaded
+Received Data: sender_id=2, message=batu
+Message inserted successfully
+=== New Request ===
+Database connection loaded
+Received Data: sender_id=2, message=kopi habus
+Message inserted successfully

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAPI (Nyari Kopi) System</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            background-color: #f7f7f7;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #0056b3;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container img {
+            width: 150px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .container h1 {
+            font-size: 24px;
+            color: #4a4a4a;
+            margin-bottom: 20px;
+        }
+
+        .container h1 span {
+            color: #007bff;
+        }
+
+        .button {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .button a {
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            text-align: center;
+        }
+
+        .button a:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #555;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="logo kopi.jpg" alt="Coffee Cup">
+        <h1>Welcome to <span>NAPI (Nyari Kopi)</span></h1>
+        <div class="button">
+            <a href="driver/driver_login.html">Driver Login</a>
+            <a href="customer/customer_login.html">Customer Login</a>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 NAPI (Nyari Kopi). All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
